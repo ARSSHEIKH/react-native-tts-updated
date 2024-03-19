@@ -57,6 +57,7 @@ public class TextToSpeechModule extends ReactContextBaseJavaModule {
         setUtteranceProgress();
     }
 
+
     private void setUtteranceProgress() {
         if(tts != null)
         {
@@ -205,6 +206,34 @@ public class TextToSpeechModule extends ReactContextBaseJavaModule {
         }
     }
 
+    
+    @ReactMethod
+    public void findLanguage(String language, Promise promise) {
+        Locale locale = null;
+        String[] parts = language.split("-");
+        if (language.indexOf("-") != -1) {
+            locale = new Locale(parts[0], parts[1]);
+
+        } else {
+            locale = new Locale(language);
+        }
+
+        try {
+            int isAvailable = tts.isLanguageAvailable(locale);
+            if (isAvailable >= 0) {
+                promise.resolve(true);
+            } else {
+                promise.reject("error", "Not supported");
+
+            }
+        }
+
+        catch (Exception e) {
+            promise.reject("error", "Unknown error code");
+        }
+        promise.resolve(false);
+    }
+
     @ReactMethod
     public void speak(String utterance, ReadableMap params, Promise promise) {
         if(notReady(promise)) return;
@@ -287,6 +316,8 @@ public class TextToSpeechModule extends ReactContextBaseJavaModule {
         int result = tts.setPitch(pitch);
         resolvePromiseWithStatusCode(result, promise);
     }
+
+
 
     @ReactMethod
     public void setDefaultVoice(String voiceId, Promise promise) {

@@ -14,6 +14,9 @@ class Tts extends NativeEventEmitter {
     return TextToSpeech.getInitStatus();
   }
 
+  findLanguage(language){
+    return TextToSpeech.findLanguage(language)
+  }
   requestInstallEngine() {
     if (Platform.OS === 'ios' || Platform.OS === 'windows') {
       return Promise.resolve(true);
