@@ -3,7 +3,7 @@
 
 Forked from [React Native TTS](https://www.npmjs.com/package/react-native-tts).
 
-Added a function that can find language e, to check the language is availble on running device
+Added a function that can find language, to check the language is availble on running device
 
 
 - [Complete Reason for fork](#reason-for-this-fork)
