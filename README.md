@@ -1,3 +1,16 @@
+
+# RN TTS
+
+Forked from [React Native TTS](https://www.npmjs.com/package/react-native-tts).
+
+Added a function that can find language e, to check the language is availble on running device
+
+
+- [Complete Reason for fork](#reason-for-this-fork)
+
+
+----------------------------------------------------------------------------------
+
 # React Native TTS
 
 React Native TTS is a text-to-speech library for [React Native](https://facebook.github.io/react-native/) on iOS, Android and Windows.
@@ -7,7 +20,6 @@ React Native TTS is a text-to-speech library for [React Native](https://facebook
 - [Install](#install)
 - [Usage](#usage)
 - [License](#license)
-- [Example project](#example)
 
 ## Install
 
@@ -134,6 +146,11 @@ Tts.voices().then(voices => console.log(voices));
 |networkConnectionRequired|True when the voice requires an active network connection *(Android only)*|
 |notInstalled|True when the voice may need to download additional data to be fully functional *(Android only)*|
 
+### Find Language in device before set the language
+
+```js
+Tts.findLanguage('en-IE');
+```
 
 ### Set default Language
 
@@ -236,9 +253,19 @@ Tts.getInitStatus().then(() => {
 });
 ```
 
-## Example
+## Reason For This Fork
 
-There is an example project which shows use of react-native-tts on Android/iOS/Windows: https://github.com/themostaza/react-native-tts-example
+On some devices (like samsung) some language are not availble so the application were crashing (because of error, reason language not found in the device) on by running, Tts.setDefaultLanguage("ar")
+We created a method name is TTs.findLanguage("ar"),
+You can find more about this method here
+
+### Find Language
+
+```js
+TTs.findLanguage("ar");
+```
+
+
 
 ## License
 
