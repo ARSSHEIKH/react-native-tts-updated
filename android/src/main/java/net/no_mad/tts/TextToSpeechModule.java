@@ -223,7 +223,12 @@ public class TextToSpeechModule extends ReactContextBaseJavaModule {
             if (isAvailable >= 0) {
                 promise.resolve(true);
             } else {
-                promise.reject("error", "Not supported");
+                if (isAvailable == -2)
+                    promise.reject("error", "LANG_NOT_SUPPORTED");
+                else if (isAvailable == -1)
+                    promise.reject("error", "LANG_MISSING_DATA");
+                else
+                    promise.reject("error", "Something went wrong" + isAvailable);
 
             }
         }
